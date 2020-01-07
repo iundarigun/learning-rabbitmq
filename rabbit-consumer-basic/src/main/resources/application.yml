@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: rabbitmq-consumer-basic
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 7001
