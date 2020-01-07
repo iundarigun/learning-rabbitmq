@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("exchanges")
-class QueueController(
+class ExchangeController(
     private val rabbitTemplate: RabbitTemplate
 ) {
 

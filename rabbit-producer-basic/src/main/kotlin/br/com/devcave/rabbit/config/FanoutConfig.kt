@@ -13,7 +13,6 @@ class FanoutConfig(
     private val firstQueue: Queue,
     private val secondQueue: Queue
 ) {
-
     @Bean
     fun fanoutExchange(): Exchange {
         return ExchangeBuilder

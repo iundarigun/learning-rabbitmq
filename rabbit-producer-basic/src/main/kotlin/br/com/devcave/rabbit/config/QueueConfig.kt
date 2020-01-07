@@ -20,5 +20,4 @@ class QueueConfig {
             .durable("SECOND-QUEUE-BASIC")
             .build()
     }
-
 }

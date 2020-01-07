@@ -28,6 +28,8 @@ dependencies {
 
     implementation("io.springfox:springfox-swagger2:$swaggerVersion")
     implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
+
+    implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
 }
 
 dependencyManagement {

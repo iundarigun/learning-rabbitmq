@@ -14,7 +14,6 @@ class DirectConfig(
     private val firstQueue: Queue,
     private val secondQueue: Queue
 ) {
-
     @Bean
     fun directExchange(): Exchange {
         return ExchangeBuilder
