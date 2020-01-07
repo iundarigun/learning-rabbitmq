@@ -20,4 +20,11 @@ class QueueConfig {
             .durable("SECOND-QUEUE-BASIC")
             .build()
     }
+
+    @Bean
+    fun jsonQueue(): Queue {
+        return QueueBuilder
+            .durable("JSON-QUEUE-BASIC")
+            .build()
+    }
 }

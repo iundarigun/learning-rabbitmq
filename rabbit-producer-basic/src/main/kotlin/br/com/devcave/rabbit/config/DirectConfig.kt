@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class DirectConfig(
     private val firstQueue: Queue,
-    private val secondQueue: Queue
+    private val secondQueue: Queue,
+    private val jsonQueue: Queue
 ) {
     @Bean
     fun directExchange(): Exchange {
@@ -37,6 +38,15 @@ class DirectConfig(
             .bind(secondQueue)
             .to(directExchange())
             .with("TO-SECOND-QUEUE")
+            .noargs()
+    }
+
+    @Bean
+    fun jsonDirectBinding(): Binding {
+        return BindingBuilder
+            .bind(jsonQueue)
+            .to(directExchange())
+            .with("TO-JSON-QUEUE")
             .noargs()
     }
 }
