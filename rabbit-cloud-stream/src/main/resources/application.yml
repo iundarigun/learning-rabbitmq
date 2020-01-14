@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: rabbit-cloud-stream
+  cloud:
+    stream:
+      rabbit:
+        bindings:
+          output1:
+            producer:
+              bindingRoutingKey: "TO-QUEUE1"
+              routingKeyExpression: '''TO-QUEUE1'''
+              exchangeType: direct
+              bindQueue: true
+          output2:
+            producer:
+              bindingRoutingKey: "TO-QUEUE2"
+              routingKeyExpression: '''TO-QUEUE2'''
+              exchangeType: direct
+              bindQueue: true
+          input:
+            consumer:
+              bindingRoutingKey: "TO-QUEUE1"
+              bindQueue: true
+      bindings:
+        output1:
+          destination: DESTINATION_EXCHANGE
+          producer:
+            requiredGroups: DESTINATION_QUEUE1
+        output2:
+          destination: DESTINATION_EXCHANGE
+          producer:
+            requiredGroups: DESTINATION_QUEUE2
+        input:
+          destination: DESTINATION_EXCHANGE
+          group: DESTINATION_QUEUE1
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
