@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: rabbitmq-producer-multiple-vhost
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: devcave
+    password: devcave
+    virtual-host: rabbit-advanced
+    alternative-host: localhost
+    alternative-port: 5672
+    alternative-username: guest
+    alternative-password: guest
+    alternative-virtual-host: /
+
+server:
+  port: 9001

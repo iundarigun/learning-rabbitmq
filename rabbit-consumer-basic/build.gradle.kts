@@ -15,7 +15,6 @@ repositories {
     mavenCentral()
 }
 
-val swaggerVersion = "2.9.2"
 val springCloudVersion = "Hoxton.SR1"
 
 dependencies {
@@ -27,9 +26,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
-
-    implementation("io.springfox:springfox-swagger2:$swaggerVersion")
-    implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
 }
 
 dependencyManagement {
