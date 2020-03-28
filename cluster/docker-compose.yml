@@ -1,0 +1,75 @@
+version: '3'
+services:
+  rabbitmq1:
+    image: rabbitmq:3-management
+    hostname: rabbitmq1
+    network_mode: "bridge"
+    environment:
+     - RABBITMQ_ERLANG_COOKIE=docker-compose-rabbitmq-cluster
+    ports:
+      - "15691:15672"
+      - "5691:5672"
+  rabbitmq2:
+    image: rabbitmq:3-management
+    hostname: rabbitmq2
+    network_mode: "bridge"
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=docker-compose-rabbitmq-cluster
+    ports:
+      - "15692:15672"
+      - "5692:5672"
+    links:
+      - rabbitmq1:rabbitmq1  
+  rabbitmq3:
+    image: rabbitmq:3-management
+    hostname: rabbitmq3
+    network_mode: "bridge"
+    environment:
+     - RABBITMQ_ERLANG_COOKIE=docker-compose-rabbitmq-cluster
+    ports:
+      - "15693:15672"
+      - "5693:5672"
+    links:
+      - rabbitmq1:rabbitmq1  
+      - rabbitmq2:rabbitmq2
+  rabbitmq4:
+    image: rabbitmq:3-management
+    hostname: rabbitmq4
+    network_mode: "bridge"
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=docker-compose-rabbitmq-cluster
+    ports:
+      - "15694:15672"
+      - "5694:5672"
+    links:
+      - rabbitmq1:rabbitmq1  
+      - rabbitmq2:rabbitmq2
+      - rabbitmq3:rabbitmq3
+  setup1:
+    image: docker
+    volumes:  
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: docker exec cluster_rabbitmq2_1 bash -c "rabbitmqctl stop_app; rabbitmqctl join_cluster rabbit@rabbitmq1;rabbitmqctl start_app"
+    links:
+      - rabbitmq2:rabbitmq2  
+      - rabbitmq3:rabbitmq3
+      - rabbitmq4:rabbitmq4
+  setup2:
+    image: docker
+    volumes:  
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: docker exec cluster_rabbitmq3_1 bash -c "rabbitmqctl stop_app; rabbitmqctl join_cluster rabbit@rabbitmq1;rabbitmqctl start_app"
+    links:
+      - rabbitmq2:rabbitmq2  
+      - rabbitmq3:rabbitmq3
+      - rabbitmq4:rabbitmq4
+  setup3:
+    image: docker
+    volumes:  
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: docker exec cluster_rabbitmq4_1 bash -c "rabbitmqctl stop_app; rabbitmqctl join_cluster rabbit@rabbitmq1;rabbitmqctl start_app"
+    links:
+      - rabbitmq2:rabbitmq2  
+      - rabbitmq3:rabbitmq3
+      - rabbitmq4:rabbitmq4
+        
