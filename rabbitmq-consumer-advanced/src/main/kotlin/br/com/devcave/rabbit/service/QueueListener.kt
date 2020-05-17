@@ -20,9 +20,15 @@ class QueueListener(
             val person: Person = messageConverter.fromMessage(it) as Person
             log.info("person $person")
             if (person.collageCompletedYear == null) {
-                throw AmqpRejectAndDontRequeueException("Wrong data for person class")
+                throw RuntimeException("Wrong data for person class")
             }
         } ?: log.warn("No message found")
 
     }
 }
+
+
+
+
+
+//                throw AmqpRejectAndDontRequeueException("Wrong data for person class")

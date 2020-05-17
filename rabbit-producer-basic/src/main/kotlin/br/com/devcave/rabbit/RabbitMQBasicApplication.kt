@@ -14,7 +14,6 @@ class RabbitMQBasicApplication {
     fun messageConverter(objectMapper: ObjectMapper): MessageConverter {
         return Jackson2JsonMessageConverter(objectMapper)
     }
-
 }
 
 fun main(args: Array<String>) {

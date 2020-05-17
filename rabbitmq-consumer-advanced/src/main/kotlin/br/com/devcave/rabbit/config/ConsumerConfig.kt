@@ -26,9 +26,8 @@ class ConsumerConfig(
         container.setQueueNames("SECOND-QUEUE-ADVANCED")
         container.setMessageListener(queueListener)
         simpleRabbitListenerContainerFactory.adviceChain?.let {
-            container.setAdviceChain(*it, retryPolicy())
+            container.setAdviceChain(*it/*, retryPolicy()*/)
         }
-        container.start()
         return container
     }
 
@@ -41,7 +40,6 @@ class ConsumerConfig(
                 2.0, // Multiplier
                 6000 // Max interval
             )
-            .recoverer(RejectAndDontRequeueRecoverer())
             .build()
     }
 }

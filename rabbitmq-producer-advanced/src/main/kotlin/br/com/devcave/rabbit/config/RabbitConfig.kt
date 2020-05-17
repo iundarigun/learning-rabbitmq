@@ -31,6 +31,8 @@ class RabbitConfig(private val connectionFactory: ConnectionFactory) {
 
     private fun createFirstQueue(rabbitAdmin: RabbitAdmin) {
         val queue = QueueBuilder.durable(QueueDefinition.FIRST_QUEUE)
+            .deadLetterExchange(QueueDefinition.DLQ_EXCHANGE)
+            .deadLetterRoutingKey(QueueDefinition.DLQ_BINDING_KEY)
             .build()
         val binding = Binding(
             QueueDefinition.FIRST_QUEUE,
@@ -46,7 +48,7 @@ class RabbitConfig(private val connectionFactory: ConnectionFactory) {
     private fun createSecondQueue(rabbitAdmin: RabbitAdmin) {
         val queue = QueueBuilder.durable(QueueDefinition.SECOND_QUEUE)
             .maxLength(10)
-            .ttl(30_000)
+            .ttl(300_000)
             .deadLetterExchange(QueueDefinition.DLQ_EXCHANGE)
             .deadLetterRoutingKey(QueueDefinition.DLQ_BINDING_KEY)
             .build()
