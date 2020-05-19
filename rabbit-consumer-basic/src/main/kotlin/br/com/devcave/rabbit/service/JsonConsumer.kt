@@ -1,5 +1,6 @@
 package br.com.devcave.rabbit.service
 
+import br.com.devcave.rabbit.domain.Person
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.core.Message
 import org.springframework.amqp.rabbit.annotation.RabbitListener
@@ -15,7 +16,7 @@ class JsonConsumer (
     @RabbitListener(queues = ["JSON-QUEUE-BASIC"])
     fun receiveMessageFromJsonQueue(message: Message) {
         log.info("receive message from ${message.messageProperties.consumerQueue}")
-        val person = messageConverter.fromMessage(message)
+        val person = messageConverter.fromMessage(message) as Person
         log.info("body $person")
     }
 }
