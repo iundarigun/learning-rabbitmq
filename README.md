@@ -128,4 +128,3 @@ Some applications require high throughput while other applications are publishin
 - https://www.cloudamqp.com/docs/index.html
 - http://tryrabbitmq.com/
 - https://www.udemy.com/course/learn-rabbitmq-asynchronous-messaging-with-java-and-spring/
-Pagina 83

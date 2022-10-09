@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: rabbitmq-stream
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    password: admin
+    username: admin
+    virtual-host: /
