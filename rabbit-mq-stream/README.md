@@ -9,3 +9,7 @@ rabbitmq:3-management
 $ docker exec -it local-rabbit bash
 $ rabbitmq-plugins enable rabbitmq_stream
 ```
+
+## References
+- https://github.com/devdojobr/rabbitmq-stream
+- https://www.youtube.com/watch?v=JqNH6nRANh0&list=PL62G310vn6nF-iJF7v3DWhk5Mngup-sub
